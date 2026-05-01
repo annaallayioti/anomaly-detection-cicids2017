@@ -114,7 +114,32 @@ anomaly-detection-cicids2017/
 ##  How to Run
 
 ### 1. Clone the repository
-
 ```bash
 git clone https://github.com/annaallayioti/anomaly-detection-cicids2017.git
 cd anomaly-detection-cicids2017
+```
+
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Download the dataset
+Download the CICIDS2017 dataset from:  
+https://www.unb.ca/cic/datasets/ids-2017.html  
+
+Place the CSV files inside a `data/` folder in the project root.
+
+### 4. Run the notebook
+```bash
+jupyter notebook anomaly_detection_pipeline.ipynb
+```
+
+##  Tech Stack
+`Python` `scikit-learn` `PyTorch` `pandas` `numpy` `matplotlib`
+
+##  Authors
+
+- Anna Allagioti  
+- Maria-Konstantina Karkoglou  
+- Maria Plerou  
