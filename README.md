@@ -64,4 +64,57 @@ Modern networks face a growing volume of sophisticated attacks that traditional 
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
+```
+anomaly-detection-cicids2017/
+│
+├── anomaly_detection_pipeline.ipynb # Full ML pipeline
+├── assets/ # Figures and plots
+├── README.md
+├── .gitignore
+```
+
+---
+
+##  Dataset
+
+**CICIDS2017 — Canadian Institute for Cybersecurity Intrusion Detection Dataset**
+
+- ~2.8 million network flow instances
+- 79 features, multiple attack types
+- Highly imbalanced (~83% benign traffic)
+
+>  Dataset is not included due to size (~500MB)  
+> Download from: https://www.unb.ca/cic/datasets/ids-2017.html  
+
+---
+
+##  Methodology
+
+### Preprocessing
+- Merged multiple CSV files
+- Sampled subset for efficiency
+- Removed NaNs, infinities, constant features
+- Converted multi-class labels → binary classification
+- Feature scaling (Standardization)
+- Train / Validation / Test split
+
+### Models
+
+**Supervised:**
+- Logistic Regression (baseline, class-weighted, tuned C)
+- Random Forest (ensemble, cross-validation)
+
+**Unsupervised (trained on normal traffic only):**
+- Isolation Forest (threshold tuning via validation set)
+- Autoencoder (PyTorch, reconstruction error-based detection)
+
+---
+
+##  How to Run
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/annaallayioti/anomaly-detection-cicids2017.git
+cd anomaly-detection-cicids2017
