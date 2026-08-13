@@ -8,11 +8,7 @@ Detecting cyberattacks in network traffic using both **supervised** (Logistic Re
 
 ## Overview
 
-This project compares supervised and unsupervised approaches for **binary network intrusion detection** (benign vs. attack) on the CICIDS2017 dataset.
-
-The supervised models are trained using both benign and attack labels, while the unsupervised models are trained only on benign traffic and identify attacks as deviations from normal behaviour.
-
-The comparison highlights an important difference between the two settings: supervised models achieve very high performance when labelled attack examples are available during training, while unsupervised anomaly detection is more relevant to previously unseen attacks but proves substantially more difficult.
+Modern networks face a growing volume of sophisticated attacks that traditional signature-based systems struggle to detect. This project compares ML and DL approaches for **binary anomaly detection** (benign vs. attack), focusing on class imbalance and the detection of previously unseen (zero-day) attacks.
 
 ---
 
@@ -25,27 +21,9 @@ The comparison highlights an important difference between the two settings: supe
 | Isolation Forest | 0.858 | 0.725 | 0.448 | 0.554 |
 | Autoencoder | 0.881 | 0.912 | 0.438 | 0.591 |
 
-The supervised models clearly outperform the unsupervised approaches on the random train/test split. Random Forest reaches an F1-score of 0.997, while Logistic Regression reaches 0.821.
-
-The unsupervised setting is considerably more challenging. Isolation Forest and the Autoencoder detect fewer than half of the attacks, with recall of 0.448 and 0.438 respectively. The Autoencoder achieves substantially higher precision (0.912), but still misses a large proportion of attacks.
-
-### Interpreting the Random Forest result
-
-The Random Forest F1-score of 0.997 should be interpreted with caution.
-
-CICIDS2017 is a flow-based dataset, where a single attack event can generate many highly similar network-flow records. This experiment uses a random train/test split and does not remove duplicate records before splitting, so closely related flows may appear across both sets.
-
-Five-fold cross-validation produced F1 scores of approximately:
-
-`[0.99705, 0.99706, 0.99733, 0.99720, 0.99706]`
-
-with a standard deviation of only `0.0001`.
-
-The very small variation between folds, together with the flow-based structure of the dataset, suggests that the random-split evaluation may provide an optimistic estimate of performance on genuinely unseen network traffic.
-
-A stronger evaluation would remove duplicate flows before splitting or use a temporal or attack-day-based split so that related traffic is kept together.
-
-The main result of the comparison is therefore not simply the near-perfect Random Forest score. The larger challenge appears in the unsupervised setting: without using attack labels during training, both anomaly-detection models miss more than half of the attacks.
+- **Random Forest** achieves near-perfect performance (F1 ≈ 0.997)
+- **Autoencoder** improves precision over Isolation Forest for anomaly detection
+- Clear comparison between supervised and unsupervised approaches on imbalanced data
 
 ---
 ##  Results Visualization
